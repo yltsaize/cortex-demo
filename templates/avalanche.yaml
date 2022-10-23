@@ -18,7 +18,7 @@ spec:
       - name: avalanche
         image: quay.io/prometheuscommunity/avalanche:main
         args:
-        - "--metric-count=1000"
+        - "--metric-count=10"
         - "--series-count=50"
         - "--label-count=10"
         - "--port=9001"

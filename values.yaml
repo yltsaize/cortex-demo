@@ -26,6 +26,8 @@ minio:
     policy: none
 cortex:
   config:
+    alertmanager:
+      retention: 24h
     alertmanager_storage:
       s3:
         region: us-east-1
@@ -34,6 +36,8 @@ cortex:
         access_key_id: admin
         secret_access_key: passw0rd
         insecure: true
+    limits:
+      max_metadata_per_user: 0
     storage:
       engine: blocks
     blocks_storage:

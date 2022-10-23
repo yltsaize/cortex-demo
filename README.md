@@ -6,7 +6,8 @@ A self-contained demo site of cortex solution
 > git clone https://github.com/yltsaize/cortex-demo.git
 > cd cortext-demo
 > helm dependency build
-> helm install coretx .
+> kubectl create namespace cortex
+> helm install --namespace cortex cortex .
 
 # minio-console
 > kubectl port-forward svc/minio-console 9001:9001
