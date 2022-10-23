@@ -89,3 +89,25 @@ prometheus:
           - avalanche:9001
       remote_write:
       - url: http://cortex-nginx/api/v1/push
+grafana:
+  fullnameOverride: grafana
+  rbac:
+    create: false
+  pspEnabled: false
+  serviceAccount:
+    create: false
+  adminUser: admin
+  adminPassword: passw0rd
+  persistence:
+    type: pvc
+    enabled: false
+    size: 100Mi
+  datasources:
+    datasources.yaml:
+      apiVersion: 1
+      datasources:
+      - name: cortex
+        type: prometheus
+        url: http://cortex-nginx/prometheus
+        access: proxy
+        isDefault: true
