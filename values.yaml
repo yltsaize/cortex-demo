@@ -18,11 +18,11 @@ minio:
     requests:
       memory: 4Gi
   buckets:
-  - name: cortext-alertmanager-storage
+  - name: cortex-alertmanager-storage
     policy: none
-  - name: cortext-blocks-storage
+  - name: cortex-blocks-storage
     policy: none
-  - name: cortext-ruler-storage
+  - name: cortex-ruler-storage
     policy: none
 cortex:
   config:
@@ -59,3 +59,33 @@ cortex:
         access_key_id: admin
         secret_access_key: passw0rd
         insecure: true
+prometheus:
+  rbac:
+    create: false
+  alertmanager:
+    enabled: false
+  configmapReload:
+    prometheus:
+      enabled: true
+  kubeStateMetrics:
+    enabled: false
+  nodeExporter:
+    enabled: false
+  server:
+    fullnameOverride: prometheus
+    enabled: true
+    name: server
+    persistentVolume:
+      enabled: false
+  pushgateway:
+    enabled: false
+  serverFiles:
+    prometheus.yml:
+      rule_files:
+      scrape_configs:
+      - job_name: prometheus
+        static_configs:
+        - targets:
+          - avalanche:9001
+      remote_write:
+      - url: http://cortex-nginx/api/v1/push

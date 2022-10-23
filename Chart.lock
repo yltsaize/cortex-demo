@@ -5,5 +5,8 @@ dependencies:
 - name: cortex
   repository: https://cortexproject.github.io/cortex-helm-chart
   version: 1.7.0
-digest: sha256:fa6e40a7bb52a3a426d7a74f92b2b4bc3e91d15a56659fd1ad68faffa74860dd
-generated: "2022-10-23T17:31:14.144287868+08:00"
+- name: prometheus
+  repository: https://prometheus-community.github.io/helm-charts
+  version: 15.16.1
+digest: sha256:57c0b9afb47834be113ac4b162e00fb99ef67ad746821984a76bb520a80a2626
+generated: "2022-10-23T17:54:09.883635933+08:00"

@@ -10,3 +10,6 @@ dependencies:
   - name: cortex
     version: 1.7.0
     repository: https://cortexproject.github.io/cortex-helm-chart
+  - name: prometheus
+    version: 15.16.1
+    repository: https://prometheus-community.github.io/helm-charts
