@@ -6,4 +6,7 @@ version: 0.1.0
 dependencies:
   - name: minio
     version: 4.0.15
-    repository: https://charts.min.io/
+    repository: https://charts.min.io
+  - name: cortex
+    version: 1.7.0
+    repository: https://cortexproject.github.io/cortex-helm-chart

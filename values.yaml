@@ -1,7 +1,6 @@
-nameOverride: "cortex-demo"
-fullnameOverride: "cortex-demo"
 minio:
-  mode: standalone ## other supported values are "standalone", "gateway"
+  fullnameOverride: minio
+  mode: standalone
   rootUser: "admin"
   rootPassword: "passw0rd"
   drivesPerNode: 1
@@ -18,3 +17,45 @@ minio:
   resources:
     requests:
       memory: 4Gi
+  buckets:
+  - name: cortext-alertmanager-storage
+    policy: none
+  - name: cortext-blocks-storage
+    policy: none
+  - name: cortext-ruler-storage
+    policy: none
+cortex:
+  config:
+    alertmanager_storage:
+      s3:
+        region: us-east-1
+        endpoint: minio:9000
+        bucket_name: cortex-alertmanager-storage
+        access_key_id: admin
+        secret_access_key: passw0rd
+        insecure: true
+    storage:
+      engine: blocks
+    blocks_storage:
+      backend: s3
+      s3:
+        region: us-east-1
+        endpoint: minio:9000
+        bucket_name: cortex-blocks-storage
+        access_key_id: admin
+        secret_access_key: passw0rd
+        insecure: true
+      bucket_store:
+        sync_dir: "/data"
+      tsdb:
+        dir: "/data"
+    querier:
+      store_gateway_addresses: cortex-store-gateway-headless:9095
+    ruler_storage:
+      s3:
+        region: us-east-1
+        endpoint: minio:9000
+        bucket_name: cortex-ruler-storage
+        access_key_id: admin
+        secret_access_key: passw0rd
+        insecure: true
