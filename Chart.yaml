@@ -3,3 +3,7 @@ name: cortex-demo
 description: A self-contained demo environment of cortex solution.
 type: application
 version: 0.1.0
+dependencies:
+  - name: minio
+    version: 4.0.15
+    repository: https://charts.min.io/
